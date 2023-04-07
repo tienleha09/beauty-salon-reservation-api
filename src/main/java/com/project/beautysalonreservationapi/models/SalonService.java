@@ -30,10 +30,7 @@ public class SalonService {
 	)
 	@JsonIgnore
 	private List<Employee> employees = new ArrayList<>();
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "service", cascade = CascadeType.ALL)
-	@JsonIgnore
-	private List<EmployeeAvailabilityPerService> availability;
+
 
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "service",cascade = CascadeType.ALL)
 	@JsonIgnore

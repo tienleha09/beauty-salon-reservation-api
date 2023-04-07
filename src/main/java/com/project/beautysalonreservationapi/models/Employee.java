@@ -38,9 +38,7 @@ public class Employee {
 	@JsonIgnore
 	private List<Reservation> reservations = new ArrayList<>();
 
-	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
-	@JsonIgnore
-	private List<EmployeeAvailabilityPerService> availabilityPerServices;
+
 
 	@OneToMany(mappedBy = "employee",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	@JsonIgnore
@@ -102,7 +100,11 @@ public class Employee {
 	public List<SalonService> getServices() {
 		return services;
 	}
-	
+
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
+
 	public void doService(SalonService s) {
 		this.services.add(s);
 	}
@@ -120,5 +122,9 @@ public class Employee {
 
 	public void setEmployeeSchedules(Set<EmployeeSchedule> employeeSchedules) {
 		this.employeeSchedules = employeeSchedules;
+	}
+
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
 	}
 }

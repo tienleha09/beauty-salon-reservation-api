@@ -6,6 +6,8 @@ import jakarta.validation.constraints.FutureOrPresent;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
+import java.util.Objects;
 
 public class EmpAvailabilityPerServiceDto {
 	private long serviceId;
@@ -14,13 +16,19 @@ public class EmpAvailabilityPerServiceDto {
 	private String employeeFullName;
 	@FutureOrPresent
 	private LocalDate date;
+
+	private int durationInHours =1;
 	@BusinessHours
 	@JsonFormat(pattern = "HH:mm")
-	private LocalTime startTime;
-	@BusinessHours
-	@JsonFormat(pattern = "HH:mm")
-	private LocalTime endTime;
-	private boolean available;
+	private List<LocalTime> timeSlots;
+
+	public EmpAvailabilityPerServiceDto(long serviceId, long employeeId, LocalDate date, List<LocalTime> timeSlots) {
+		this.serviceId = serviceId;
+		this.employeeId = employeeId;
+		this.date = date;
+		this.timeSlots = timeSlots;
+		this.durationInHours = 1;
+	}
 
 	public long getServiceId() {
 		return serviceId;
@@ -62,27 +70,41 @@ public class EmpAvailabilityPerServiceDto {
 		this.date = date;
 	}
 
-	public LocalTime getStartTime() {
-		return startTime;
+	public int getDurationInHours() {
+		return durationInHours;
 	}
 
-	public void setStartTime(LocalTime startTime) {
-		this.startTime = startTime;
+	public void setDurationInHours(int durationInHours) {
+		this.durationInHours = durationInHours;
 	}
 
-	public LocalTime getEndTime() {
-		return endTime;
+	public List<LocalTime> getTimeSlots() {
+		return timeSlots;
 	}
 
-	public void setEndTime(LocalTime endTime) {
-		this.endTime = endTime;
+	@Override
+	public String toString() {
+		return "EmpAvailabilityPerServiceDto{" +
+				"serviceId=" + serviceId +
+				", serviceName='" + serviceName + '\'' +
+				", employeeId=" + employeeId +
+				", employeeFullName='" + employeeFullName + '\'' +
+				", date=" + date +
+				", durationInHours=" + durationInHours +
+				", timeSlots=" + timeSlots.toString() +
+				'}';
 	}
 
-	public boolean isAvailable() {
-		return available;
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		EmpAvailabilityPerServiceDto that = (EmpAvailabilityPerServiceDto) o;
+		return serviceId == that.serviceId && employeeId == that.employeeId && durationInHours == that.durationInHours && Objects.equals(serviceName, that.serviceName) && Objects.equals(employeeFullName, that.employeeFullName) && Objects.equals(date, that.date) && Objects.equals(timeSlots, that.timeSlots);
 	}
 
-	public void setAvailable(boolean available) {
-		this.available = available;
+	@Override
+	public int hashCode() {
+		return Objects.hash(serviceId, serviceName, employeeId, employeeFullName, date, durationInHours, timeSlots);
 	}
 }
