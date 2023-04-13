@@ -20,9 +20,9 @@ import java.util.Optional;
 @Service
 public class SalonServiceServicesImpl {
 
-	private SalonServiceRepository _serviceRepo;
-	private SalonServiceMapper _salonServiceMapper;
-	private EmployeeScheduleRepository employeeScheduleRepository;
+	private final SalonServiceRepository _serviceRepo;
+	private final SalonServiceMapper _salonServiceMapper;
+	private final EmployeeScheduleRepository employeeScheduleRepository;
 
 
 	public SalonServiceServicesImpl(SalonServiceRepository _serviceRepo, SalonServiceMapper _salonServiceMapper

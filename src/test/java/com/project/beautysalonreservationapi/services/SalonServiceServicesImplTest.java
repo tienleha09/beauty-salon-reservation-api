@@ -8,7 +8,6 @@ import com.project.beautysalonreservationapi.models.EmployeeSchedule;
 import com.project.beautysalonreservationapi.models.Reservation;
 import com.project.beautysalonreservationapi.models.SalonService;
 import com.project.beautysalonreservationapi.util.SalonServiceMapper;
-import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -21,7 +20,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.hasProperty;
 import static org.mockito.BDDMockito.given;
 
 
@@ -59,7 +57,7 @@ public class SalonServiceServicesImplTest {
         Reservation reservation = new Reservation(employee,service,startDate,LocalTime.parse("09:30"),LocalTime.parse("10:30"));
         employee.setReservations(List.of(reservation));
 
-        given(serviceRepo.findById(1l)).willReturn(Optional.of(service));
+        given(serviceRepo.findById(1L)).willReturn(Optional.of(service));
         given(employeeScheduleRepository.findByServiceAndDateRange(serviceId,startDate,endDate))
                 .willReturn(List.of(schedule1));
 

@@ -18,7 +18,7 @@ import java.util.List;
 @RequestMapping("/reservations")
 public class ReservationsController {
 
-    private ReservationServicesImp reservationServicesImp;
+    private final ReservationServicesImp reservationServicesImp;
 
     public ReservationsController(ReservationServicesImp reservationServicesImp) {
         this.reservationServicesImp = reservationServicesImp;

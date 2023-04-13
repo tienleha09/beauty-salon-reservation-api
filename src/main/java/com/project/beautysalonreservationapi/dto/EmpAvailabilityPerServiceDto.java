@@ -17,7 +17,7 @@ public class EmpAvailabilityPerServiceDto {
 	@FutureOrPresent
 	private LocalDate date;
 
-	private int durationInHours =1;
+	private int durationInHours;
 	@BusinessHours
 	@JsonFormat(pattern = "HH:mm")
 	private List<LocalTime> timeSlots;
